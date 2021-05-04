@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="spit-move.js"></script>
+    <title>Mini Starcraft</title>
+</head>
+<body>
+    <h1 id="hp">HP: 3</h1>
+    <div class="background">
+        <img id="drone" src="images/drone.png" alt="drone">
+        <img id="spit" src="images/spit.png" alt="spit" onclick="">
+        <img id="bunker" src="images/bunker.png" alt="bunker">
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+    var hp = 3;
+    $("#drone").click(function(){
+       $("#spit").fadeIn();     //침 나타내기
+       $("#spit").animate({left: '+=250'});     //침 -> 벙커로 이동
+       $("#spit").fadeOut(function(){
+            hp -= 1;
+            $("#hp").text("HP: "+ hp);
+            if(hp == 0){
+                $("#bunker").fadeOut();
+            }
+       });   //침 사라지게 하기 -> callback 함수를 이용해 벙커가 닿을 때 숫자 감소
+       $("#spit").css({left: '120px'});     // 침이 다시 처음 위치로
+    })
+    </script>
+</body>
+</html>
